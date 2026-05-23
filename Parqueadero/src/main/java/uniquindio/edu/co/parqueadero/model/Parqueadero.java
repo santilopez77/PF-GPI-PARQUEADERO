@@ -1,5 +1,4 @@
 package uniquindio.edu.co.parqueadero.model;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Parqueadero {
@@ -17,10 +16,6 @@ public class Parqueadero {
         this.nombre = nombre;
         this.nit = nit;
         this.espaciosTotales = espaciosTotales;
-        this.listVehiculo = new ArrayList<>();
-        this.listEspacio = new ArrayList<>();
-        this.listPersona = new ArrayList<>();
-        this.listRegistro = new ArrayList<>();
     }
 
     //----------------------------------------------CRUD OPERARIO-----------------------------------------
@@ -319,7 +314,7 @@ public class Parqueadero {
             }
         }
 
-        return respuesta.toString();
+        return respuesta;
     }
 
     /**
