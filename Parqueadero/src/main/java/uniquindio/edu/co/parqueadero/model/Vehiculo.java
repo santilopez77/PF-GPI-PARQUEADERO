@@ -1,6 +1,11 @@
 package uniquindio.edu.co.parqueadero.model;
 
+import uniquindio.edu.co.parqueadero.model.*;
+
+import java.util.List;
+
 public class Vehiculo implements TarifaEspacio {
+
 
     // Atributos
     private String placa;
