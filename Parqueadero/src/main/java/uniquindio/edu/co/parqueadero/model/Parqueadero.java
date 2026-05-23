@@ -1,4 +1,5 @@
 package uniquindio.edu.co.parqueadero.model;
+
 import java.util.List;
 
 public class Parqueadero {
@@ -26,15 +27,20 @@ public class Parqueadero {
      * @param id del operario
      * @return variable true o false que indique la existencía
      */
+
     public boolean buscarEmpleado(int id) {
+
         boolean existe = false;
+
         for (Persona persona : listPersona) {
+
             if (persona.getId() == id) {
+
                 existe = true;
                 break;
-
             }
         }
+
         return existe;
     }
 
@@ -74,7 +80,7 @@ public class Parqueadero {
 
         for (Espacio espacio : listEspacio) {
 
-            if (espacio.getCodigo() == (codigo)) {
+            if (espacio.getCodigo() == codigo) {
 
                 existe = true;
                 break;
@@ -89,19 +95,29 @@ public class Parqueadero {
      *
      * @param nombre          del operario
      * @param id              del operario
+     * @param telefono        del operario
      * @param email           del operario
      * @param horasTrabajadas del operario
      * @return mensaje indicando la operación
      */
+
     public String crearOperario(String nombre, int id, String telefono, String email, int horasTrabajadas) {
+
         String respuesta = "";
+
         if (buscarEmpleado(id)) {
+
             respuesta = "El operario con id " + id + " ya existe en el sistema.";
+
         } else {
+
             Operario nuevoOperario = new Operario(nombre, id, telefono, email, horasTrabajadas);
+
             listPersona.add(nuevoOperario);
+
             respuesta = "El operario " + nuevoOperario.getNombre() + " se registró exitosamente.";
         }
+
         return respuesta;
     }
 
@@ -111,14 +127,20 @@ public class Parqueadero {
      * @param estadoEspacio del espacio
      * @return un booleano con el estado en falso o verdadero
      */
+
     public boolean encontrarEspacioDisponible(EstadoEspacio estadoEspacio) {
+
         boolean encontrado = false;
-        for (Espacio e : listEspacio) {
-            if (e.getEstadoEspacio() == EstadoEspacio.DISPONIBLE) {
+
+        for (Espacio espacio : listEspacio) {
+
+            if (espacio.getEstadoEspacio() == EstadoEspacio.DISPONIBLE) {
+
                 encontrado = true;
                 break;
             }
         }
+
         return encontrado;
     }
 
@@ -129,20 +151,23 @@ public class Parqueadero {
      */
 
     public String consultarEspaciosDisponibles() {
+
         int total = listEspacio.size();
         int ocupados = 0;
         int disponibles = 0;
 
-        for (Espacio esp : listEspacio) {
-            if (esp.getEstadoEspacio() == EstadoEspacio.OCUPADO) {
+        for (Espacio espacio : listEspacio) {
+
+            if (espacio.getEstadoEspacio() == EstadoEspacio.OCUPADO) {
+
                 ocupados++;
             }
         }
 
         disponibles = total - ocupados;
-        return "El Total de espacios es: " + total + "Los ocupados son: " + ocupados + "y los espacios disponibles: " + disponibles;
-    }
 
+        return "El Total de espacios es: " + total + " Los ocupados son: " + ocupados + " y los espacios disponibles: " + disponibles;
+    }
 
     /**
      * Metodo para registrar el ingreso de las motos al parqueadero
@@ -157,18 +182,27 @@ public class Parqueadero {
      * @param espacioAsignado de la Moto
      * @return mensaje indicando operación
      */
-    public String registrarIngresoMoto(String placa, String nombreConductor, int idConductor, double horaIngreso, double horaSalida,
-                                       int cilindraje, double valorHora, String espacioAsignado) {
+
+    public String registrarIngresoMoto(String placa, String nombreConductor, int idConductor, double horaIngreso, double horaSalida, int cilindraje, double valorHora, String espacioAsignado) {
 
         String respuesta = "";
-        if (encontrarEspacioDisponible(EstadoEspacio.DISPONIBLE)) {
-            respuesta = "El vehiculo no puede ingresar ya que el espacio esta ocupado por otro vehiculo";
+
+        if (buscarVehiculo(placa)) {
+
+            respuesta = "La placa ya existe en el sistema";
+
         } else {
 
-            Moto nuevaMoto = new Moto(placa, nombreConductor, idConductor, horaIngreso, horaSalida, cilindraje, valorHora, espacioAsignado);
+            Moto nuevaMoto = new Moto(placa, nombreConductor, idConductor, horaIngreso, horaSalida, cilindraje, valorHora,
+                    espacioAsignado);
+
+            nuevaMoto.setEstadoVehiculo(EstadoVehiculo.ADENTRO);
+
             listVehiculo.add(nuevaMoto);
-            respuesta = "La moto ha ingresado exitosamente ";
+
+            respuesta = "La moto ha ingresado exitosamente";
         }
+
         return respuesta;
     }
 
@@ -186,16 +220,20 @@ public class Parqueadero {
      * @return mensaje indicando operación
      */
 
-    public String registrarIngresoCarro(String placa, String nombreConductor, int idConductor, double horaIngreso, double horaSalida
-            , int numeroPuertas, double valorHora, String espacioAsignado) {
+    public String registrarIngresoCarro(String placa, String nombreConductor, int idConductor, double horaIngreso, double horaSalida, int numeroPuertas, double valorHora, String espacioAsignado) {
 
         String respuesta = "";
+
         if (buscarVehiculo(placa)) {
+
             respuesta = "La placa ya existe en el sistema";
 
         } else {
 
-            Carro nuevoCarro = new Carro(placa, nombreConductor, idConductor, horaIngreso, horaSalida, numeroPuertas, valorHora, espacioAsignado);
+            Carro nuevoCarro = new Carro(placa, nombreConductor, idConductor, horaIngreso, horaSalida, numeroPuertas,
+                    valorHora, espacioAsignado);
+
+            nuevoCarro.setEstadoVehiculo(EstadoVehiculo.ADENTRO);
 
             listVehiculo.add(nuevoCarro);
 
@@ -218,8 +256,8 @@ public class Parqueadero {
      * @param espacioAsignado de la Bicicleta
      * @return mensaje indicando operación
      */
-    public String registrarIngresoBicicleta(String placa, String nombreConductor, int idConductor, double horaIngreso, double horaSalida, String marca,
-                                            double valorHora, String espacioAsignado) {
+
+    public String registrarIngresoBicicleta(String placa, String nombreConductor, int idConductor, double horaIngreso, double horaSalida, String marca, double valorHora, String espacioAsignado) {
 
         String respuesta = "";
 
@@ -229,7 +267,10 @@ public class Parqueadero {
 
         } else {
 
-            Bicicleta nuevaBicicleta = new Bicicleta(placa, nombreConductor, idConductor, horaIngreso, horaSalida, marca, valorHora, espacioAsignado);
+            Bicicleta nuevaBicicleta = new Bicicleta(placa, nombreConductor, idConductor, horaIngreso, horaSalida,
+                    marca, valorHora, espacioAsignado);
+
+            nuevaBicicleta.setEstadoVehiculo(EstadoVehiculo.ADENTRO);
 
             listVehiculo.add(nuevaBicicleta);
 
@@ -259,6 +300,7 @@ public class Parqueadero {
                     vehiculo.setEstadoVehiculo(EstadoVehiculo.AFUERA);
 
                     respuesta = "El vehiculo salió exitosamente";
+                    break;
                 }
             }
 
@@ -270,28 +312,32 @@ public class Parqueadero {
         return respuesta;
     }
 
-
     /**
-     * Metodo para consultar cuantos vehiculos hay dentro del parqueadero
+     * Metodo para consultar un vehiculo dentro del parqueadero
      *
      * @param placa del vehiculo
      * @return mensaje indicando operación
      */
 
-    public String vehiculosDentroParqueadero(String placa) {
+    public String consultarVehiculoDentroParqueadero(String placa) {
 
         String respuesta = "";
-        for (Vehiculo vehiculo : listVehiculo) {
-            if (vehiculo.getPlaca().equals(placa)) {
-            }
-            if (vehiculo.getEstadoVehiculo() == EstadoVehiculo.ADENTRO) {
-                respuesta = "Placa: " + vehiculo.getPlaca() + "Conductor: " + vehiculo.getNombreConductor() + "Hora ingreso: " + vehiculo.getHoraIngreso() + "Espacio asignado " + vehiculo.getEspacioAsignado();
 
+        for (Vehiculo vehiculo : listVehiculo) {
+
+            if (vehiculo.getPlaca().equals(placa) && vehiculo.getEstadoVehiculo() == EstadoVehiculo.ADENTRO) {
+
+                respuesta = "Placa: " + vehiculo.getPlaca() + " Conductor: " + vehiculo.getNombreConductor() +
+                        " Hora ingreso: " + vehiculo.getHoraIngreso() + " Espacio asignado: " + vehiculo.getEspacioAsignado();
+
+                break;
             } else {
+
+
                 respuesta = "El vehiculo no esta estacionado en ningun espacio";
             }
-
         }
+
         return respuesta;
     }
 
@@ -304,15 +350,20 @@ public class Parqueadero {
     public String consultarVehiculosDentro() {
 
         String respuesta = "";
+        int total = 0;
 
         for (Vehiculo vehiculo : listVehiculo) {
 
             if (vehiculo.getEstadoVehiculo() == EstadoVehiculo.ADENTRO) {
 
-                respuesta += "Placa: " + vehiculo.getPlaca() + "Conductor: " + vehiculo.getNombreConductor() + "Hora ingreso: " + vehiculo.getHoraIngreso() + "Espacio asignado: " + vehiculo.getEspacioAsignado();
-                break;
+                total++;
+
+                respuesta += "Placa: " + vehiculo.getPlaca() + " Conductor: " + vehiculo.getNombreConductor() +
+                        " Hora ingreso: " + vehiculo.getHoraIngreso() + " Espacio asignado: " + vehiculo.getEspacioAsignado();
             }
         }
+
+        respuesta = "Total vehiculos dentro del parqueadero: " + total;
 
         return respuesta;
     }
@@ -329,9 +380,10 @@ public class Parqueadero {
 
         for (Espacio espacio : listEspacio) {
 
-            if (espacio.getEstadoEspacio().equals(EstadoEspacio.OCUPADO)) {
+            if (espacio.getEstadoEspacio() == EstadoEspacio.OCUPADO) {
 
-                respuesta = "Codigo: " + espacio.getCodigo() + "Tipo espacio: " + espacio.getTipoEspacio() + "Estado: " + espacio.getEstadoEspacio();
+                respuesta = "Codigo: " + espacio.getCodigo() + " Tipo espacio: " + espacio.getTipoEspacio() + " Estado: "
+                        + espacio.getEstadoEspacio() ;
             }
         }
 
@@ -339,26 +391,88 @@ public class Parqueadero {
     }
 
     /**
-     * Metodo para consultar total vehiculos ingresados
-     *Lo borre porque tengo que hacer uno de cada uno, osea uno de carros otro de motos y otro de bicicletas
-     * @return total vehiculos
+     * Metodo para consultar total de carros ingresados
+     *
+     * @return total de carros
      */
 
+    public int totalCarrosIngresados() {
+
+        int total = 0;
+
+        for (Vehiculo vehiculo : listVehiculo) {
+
+            if (vehiculo instanceof Carro) {
+
+                total++;
+            }
+        }
+
+        return total;
+    }
+
+    /**
+     * Metodo para consultar total de motos ingresadas
+     *
+     * @return total de motos
+     */
+
+    public int totalMotosIngresadas() {
+
+        int total = 0;
+
+        for (Vehiculo vehiculo : listVehiculo) {
+
+            if (vehiculo instanceof Moto) {
+
+                total++;
+            }
+        }
+
+        return total;
+    }
+
+    /**
+     * Metodo para consultar total de bicicletas ingresadas
+     *
+     * @return total de bicicletas
+     */
+
+    public int totalBicicletasIngresadas() {
+
+        int total = 0;
+
+        for (Vehiculo vehiculo : listVehiculo) {
+
+            if (vehiculo instanceof Bicicleta) {
+
+                total++;
+            }
+        }
+
+        return total;
+    }
 
     /**
      * Metodo para obtener los ingresos del carro
      *
      * @return valor de los ingresos del Carro
      */
+
     public double obtenerValorIngresoCarro() {
+
         double valorCarro = 0;
+
         for (Vehiculo vehiculo : listVehiculo) {
+
             if (vehiculo instanceof Carro) {
+
                 Carro carro = (Carro) vehiculo;
+
                 valorCarro = carro.calcularTarifa();
             }
-
         }
+
         return valorCarro;
     }
 
@@ -367,15 +481,21 @@ public class Parqueadero {
      *
      * @return valor de los ingresos de la moto
      */
+
     public double obtenerValorIngresoMoto() {
+
         double valorMoto = 0;
+
         for (Vehiculo vehiculo : listVehiculo) {
+
             if (vehiculo instanceof Moto) {
+
                 Moto moto = (Moto) vehiculo;
+
                 valorMoto = moto.calcularTarifa();
             }
-
         }
+
         return valorMoto;
     }
 
@@ -384,15 +504,21 @@ public class Parqueadero {
      *
      * @return valor de los ingresos de la bicicleta
      */
+
     public double obtenerValorIngresoBicicleta() {
+
         double valorBici = 0;
+
         for (Vehiculo vehiculo : listVehiculo) {
+
             if (vehiculo instanceof Bicicleta) {
+
                 Bicicleta bici = (Bicicleta) vehiculo;
+
                 valorBici = bici.calcularTarifa();
             }
-
         }
+
         return valorBici;
     }
 
@@ -401,29 +527,36 @@ public class Parqueadero {
      *
      * @return valor de los ingresos totales del parqueadero
      */
+
     public double obtenerIngresosTotales() {
 
         double valorTotal = 0;
 
-        valorTotal = (obtenerValorIngresoBicicleta() + obtenerValorIngresoCarro() + obtenerValorIngresoMoto());
+        valorTotal = obtenerValorIngresoBicicleta() + obtenerValorIngresoCarro() + obtenerValorIngresoMoto();
+
         return valorTotal;
     }
-
 
     /**
      * Metodo para obtener el tiempo del carro
      *
      * @return valor con el tiempo del carro en el parqueadero
      */
-    public double tiempoCarro() {
-        double tiempoCarro = 0;
-        for (Vehiculo vehiculo : listVehiculo) {
-            if (vehiculo instanceof Carro) {
-                Carro carro = (Carro) vehiculo;
-                tiempoCarro = (carro.getHoraIngreso() - carro.getHoraSalida());
-            }
 
+    public double tiempoCarro() {
+
+        double tiempoCarro = 0;
+
+        for (Vehiculo vehiculo : listVehiculo) {
+
+            if (vehiculo instanceof Carro) {
+
+                Carro carro = (Carro) vehiculo;
+
+                tiempoCarro += (carro.getHoraSalida() - carro.getHoraIngreso());
+            }
         }
+
         return tiempoCarro;
     }
 
@@ -432,15 +565,21 @@ public class Parqueadero {
      *
      * @return valor con el tiempo de la moto en el parqueadero
      */
-    public double tiempoMoto() {
-        double tiempoMoto = 0;
-        for (Vehiculo vehiculo : listVehiculo) {
-            if (vehiculo instanceof Moto) {
-                Moto moto = (Moto) vehiculo;
-                tiempoMoto = (moto.getHoraIngreso() - moto.getHoraSalida());
-            }
 
+    public double tiempoMoto() {
+
+        double tiempoMoto = 0;
+
+        for (Vehiculo vehiculo : listVehiculo) {
+
+            if (vehiculo instanceof Moto) {
+
+                Moto moto = (Moto) vehiculo;
+
+                tiempoMoto += (moto.getHoraSalida() - moto.getHoraIngreso());
+            }
         }
+
         return tiempoMoto;
     }
 
@@ -449,34 +588,114 @@ public class Parqueadero {
      *
      * @return valor con el tiempo de la bici en el parqueadero
      */
-    public double tiempoBicicleta() {
-        double tiempoBici = 0;
-        for (Vehiculo vehiculo : listVehiculo) {
-            if (vehiculo instanceof Bicicleta) {
-                Bicicleta bici = (Bicicleta) vehiculo;
-                tiempoBici = (bici.getHoraIngreso() - bici.getHoraSalida());
-            }
 
+    public double tiempoBicicleta() {
+
+        double tiempoBici = 0;
+
+        for (Vehiculo vehiculo : listVehiculo) {
+
+            if (vehiculo instanceof Bicicleta) {
+
+                Bicicleta bici = (Bicicleta) vehiculo;
+
+                tiempoBici += (bici.getHoraSalida() - bici.getHoraIngreso());
+            }
         }
+
         return tiempoBici;
     }
 
     /**
      * Metodo para calcular el tiempo promedio de permanencia de los vehiculos en el parqueadero
+     *
+     * @return promedio de permanencia
      */
+
     public double calcularPromedioPermanencia() {
+
         double promedio = 0;
 
-        promedio = (tiempoBicicleta() + tiempoMoto() + tiempoCarro());
+        int totalVehiculos = listVehiculo.size();
+
+        if (totalVehiculos > 0) {
+
+            promedio = (tiempoBicicleta() + tiempoMoto() + tiempoCarro()) / totalVehiculos;
+        }
 
         return promedio;
     }
 
     /**
-     * Metodo para consultar el total de los vehiculos ingresados en el día
-     * me falta la salida
+     * Metodo para consultar vehiculos que permanecieron mas de cierto tiempo
+     *
+     * @param horas del vehiculo
+     * @return mensaje indicando operación
      */
 
+    public String vehiculosMayorTiempo(double horas) {
+
+        String respuesta = "";
+
+        for (Vehiculo vehiculo : listVehiculo) {
+
+            double tiempo = vehiculo.getHoraSalida() - vehiculo.getHoraIngreso();
+
+            if (tiempo > horas) {
+
+                respuesta += "Placa: " + vehiculo.getPlaca() + " Tiempo: " + tiempo;
+            }
+        }
+
+        return respuesta;
+    }
+
+    /**
+     * Metodo para generar reporte del parqueadero
+     *
+     * @param horas limite de tiempo
+     * @return mensaje indicando operación
+     */
+
+    public String generarReporte(double horas) {
+
+        String respuesta = "";
+
+        int totalVehiculos = totalCarrosIngresados() + totalMotosIngresadas() + totalBicicletasIngresadas();
+
+        double ingresos = obtenerIngresosTotales();
+
+        double promedio = calcularPromedioPermanencia();
+
+        String vehiculosTiempo = vehiculosMayorTiempo(horas);
+
+        respuesta = "Total vehiculos ingresados: " + totalVehiculos + "Ingresos generados: " + ingresos + "Tiempo promedio permanencia: "
+                + promedio + "Vehiculos con mayor permanencia: " + vehiculosTiempo;
+
+        return respuesta;
+    }
+
+    /**
+     * Metodo para generar registro
+     *
+     * @param horaIngreso   del registro
+     * @param horaSalida    del registro
+     * @param valorRegistro del registro
+     * @return mensaje indicando operación
+     */
+
+    public String generarRegistro(double horaIngreso, double horaSalida, double valorRegistro) {
+
+        String respuesta = "";
+
+        Registro nuevoRegistro = new Registro(horaIngreso, horaSalida, valorRegistro);
+
+        listRegistro.add(nuevoRegistro);
+
+        respuesta = "El registro fue generado exitosamente";
+
+        return respuesta;
+    }
 
     //----------------------------------------------CRUD ADMINISTRADOR-----------------------------------------
 
@@ -524,11 +743,12 @@ public class Parqueadero {
 
             for (Espacio espacio : listEspacio) {
 
-                if (espacio.getCodigo() == (codigo)) {
+                if (espacio.getCodigo() == codigo) {
 
                     espacio.setEstadoEspacio(nuevoEstado);
 
                     respuesta = "Estado modificado exitosamente";
+                    break;
                 }
             }
 
@@ -555,11 +775,12 @@ public class Parqueadero {
 
             for (Espacio espacio : listEspacio) {
 
-                if (espacio.getCodigo() == (codigo)) {
+                if (espacio.getCodigo() == codigo) {
 
                     espacio.setEstadoEspacio(EstadoEspacio.MANTENIMIENTO);
 
                     respuesta = "Espacio deshabilitado exitosamente";
+                    break;
                 }
             }
 
@@ -586,11 +807,12 @@ public class Parqueadero {
 
             for (Espacio espacio : listEspacio) {
 
-                if (espacio.getCodigo() == (codigo)) {
+                if (espacio.getCodigo() == codigo) {
 
                     espacio.setEstadoEspacio(EstadoEspacio.DISPONIBLE);
 
                     respuesta = "Espacio habilitado exitosamente";
+                    break;
                 }
             }
 
@@ -607,18 +829,24 @@ public class Parqueadero {
      *
      * @return mensaje indicativo de la operación
      */
+
     public String asignarValorHoraCarro() {
+
         String respuesta = "";
 
         for (Vehiculo vehiculo : listVehiculo) {
+
             if (vehiculo instanceof Carro) {
+
                 Carro carro = (Carro) vehiculo;
+
                 carro.setValorHora(2000);
+
                 respuesta = "El valor de la hora para carro es " + carro.getValorHora();
             }
         }
-        return respuesta;
 
+        return respuesta;
     }
 
     /**
@@ -626,18 +854,24 @@ public class Parqueadero {
      *
      * @return mensaje indicativo de la operación
      */
+
     public String asignarValorHoraMoto() {
+
         String respuesta = "";
 
         for (Vehiculo vehiculo : listVehiculo) {
+
             if (vehiculo instanceof Moto) {
+
                 Moto moto = (Moto) vehiculo;
+
                 moto.setValorHora(1500);
+
                 respuesta = "El valor de la hora para moto es " + moto.getValorHora();
             }
         }
-        return respuesta;
 
+        return respuesta;
     }
 
     /**
@@ -645,26 +879,105 @@ public class Parqueadero {
      *
      * @return mensaje indicativo de la operación
      */
+
     public String asignarValorHoraBici() {
+
         String respuesta = "";
 
         for (Vehiculo vehiculo : listVehiculo) {
+
             if (vehiculo instanceof Bicicleta) {
+
                 Bicicleta bici = (Bicicleta) vehiculo;
+
                 bici.setValorHora(1500);
+
                 respuesta = "El valor de la hora para bici es " + bici.getValorHora();
             }
         }
-        return respuesta;
 
+        return respuesta;
     }
 
     /**
-     * Metodo para gestionar usuarios que tienen acceso frecuente al parqueadero
-     * No tengo idea de como hacerlo la verdad
+     * Metodo para crear administrador
      *
-     * @return
+     * @param nombre     del administrador
+     * @param id         del administrador
+     * @param telefono   del administrador
+     * @param email      del administrador
+     * @param nivelCargo del administrador
+     * @return mensaje indicando operación
      */
+
+    public String crearAdministrador(String nombre, int id, String telefono, String email, NivelCargo nivelCargo) {
+
+        String respuesta = "";
+
+        if (buscarEmpleado(id)) {
+
+            respuesta = "El administrador ya existe";
+
+        } else {
+
+            Administrador nuevoAdministrador = new Administrador(nombre, id, telefono, email, nivelCargo);
+
+            listPersona.add(nuevoAdministrador);
+
+            respuesta = "Administrador creado exitosamente";
+        }
+
+        return respuesta;
+    }
+
+    /**
+     * Metodo para registrar usuarios autorizados
+     *
+     * @param nombre      del usuario
+     * @param id          del usuario
+     * @param telefono    del usuario
+     * @param email       del usuario
+     * @param tipoUsuario del usuario
+     * @return mensaje indicando operación
+     */
+
+    public String registrarUsuario(String nombre, int id, String telefono, String email, TipoUsuario tipoUsuario) {
+
+        String respuesta = "";
+
+        if (buscarEmpleado(id)) {
+
+            respuesta = "El usuario ya existe";
+
+        } else {
+
+            Usuario nuevoUsuario = new Usuario(nombre, id, telefono, email, tipoUsuario);
+
+            listPersona.add(nuevoUsuario);
+
+            respuesta = "El usuario fue registrado exitosamente";
+        }
+
+        return respuesta;
+    }
+
+    /**
+     * Metodo para consultar registros generados
+     *
+     * @return mensaje indicando operación
+     */
+
+    public String consultarRegistros() {
+
+        String respuesta = "";
+
+        for (Registro registro : listRegistro) {
+
+            respuesta = registro.toString() ;
+        }
+
+        return respuesta;
+    }
 
     public String getNombre() {
         return nombre;
@@ -724,6 +1037,6 @@ public class Parqueadero {
 
     @Override
     public String toString() {
-        return "Parqueadero{" + "nombre='" + nombre + "', nit='" + nit + "'}";
+        return "Parqueadero{" + "nombre='" + nombre + '\'' + ", nit='" + nit + '\'' + '}';
     }
 }
