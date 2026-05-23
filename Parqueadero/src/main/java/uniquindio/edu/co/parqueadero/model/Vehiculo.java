@@ -15,7 +15,7 @@ public class Vehiculo implements TarifaEspacio {
     private EstadoVehiculo estadoVehiculo;
     private Espacio theEspacioAsignado;
     private Usuario theUsuario;
-    private List<Registro> listRegistro;
+
 
     public Vehiculo(String placa, String nombreConductor, int idConductor, double horaIngreso,double horaSalida, String espacioAsignado) {
         this.placa = placa;
@@ -106,13 +106,7 @@ public class Vehiculo implements TarifaEspacio {
         this.theUsuario = theUsuario;
     }
 
-    public List<Registro> getListRegistro() {
-        return listRegistro;
-    }
 
-    public void setListRegistro(List<Registro> listRegistro) {
-        this.listRegistro = listRegistro;
-    }
 
     @Override
     public String toString() {
