@@ -33,13 +33,6 @@ public class Espacio {
         this.vehiculoAsignado = vehiculoAsignado;
     }
 
-    public Parqueadero getTheParqueadero() {
-        return theParqueadero;
-    }
-
-    public void setTheParqueadero(Parqueadero theParqueadero) {
-        this.theParqueadero = theParqueadero;
-    }
 
     public TipoEspacio getTipoEspacio() {
         return tipoEspacio;
