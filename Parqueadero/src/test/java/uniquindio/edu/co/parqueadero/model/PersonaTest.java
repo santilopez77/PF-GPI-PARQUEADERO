@@ -43,7 +43,7 @@ class PersonaTest {
     void crearPersonaTelefonoInvalido() {
         // El assert debería fallar si el teléfono no tiene 10 dígitos o tiene letras
         assertThrows(AssertionError.class, () -> {
-            new Persona("Juan Perez", 12345, "1234567890", "juan@email.com");
+            new Persona("Juan Perez", 12345, "123", "juan@email.com");
         });
         
         assertThrows(AssertionError.class, () -> {
