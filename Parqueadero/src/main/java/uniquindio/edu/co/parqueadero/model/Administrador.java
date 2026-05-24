@@ -4,16 +4,16 @@ public class Administrador extends Persona {
 
     // Atributos
     private NivelCargo nivelCargo;
-    private String username;
-    private String password;
+    private String usernameA;
+    private String passwordA;
 
     public Administrador(String nombre, int id, String telefono, String email, NivelCargo nivelCargo, String usernameA, String passwordA) {
 
         super(nombre, id, telefono, email);
 
         this.nivelCargo = nivelCargo;
-        this.username = usernameA;
-        this.password = passwordA;
+        this.usernameA = usernameA;
+        this.passwordA = passwordA;
     }
 
     public NivelCargo getNivelCargo() {
@@ -25,18 +25,18 @@ public class Administrador extends Persona {
     }
 
     public String getUsernameA() {
-        return username;
+        return usernameA;
     }
 
     public void setUsernameA(String username) {
-        this.username = username;
+        this.usernameA = usernameA;
     }
 
     public String getPasswordA() {
-        return password;
+        return passwordA;
     }
 
     public void setPasswordA(String password) {
-        this.password = password;
+        this.passwordA = passwordA;
     }
 }

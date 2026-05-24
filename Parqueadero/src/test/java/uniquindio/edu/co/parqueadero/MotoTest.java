@@ -1,4 +1,4 @@
 package uniquindio.edu.co.parqueadero;
 
-public class VehiculoTest {
+public class MotoTest {
 }
