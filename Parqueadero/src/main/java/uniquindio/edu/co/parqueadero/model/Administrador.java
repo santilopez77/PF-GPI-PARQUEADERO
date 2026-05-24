@@ -7,13 +7,13 @@ public class Administrador extends Persona {
     private String username;
     private String password;
 
-    public Administrador(String nombre, int id, String telefono, String email, NivelCargo nivelCargo, String username, String password) {
+    public Administrador(String nombre, int id, String telefono, String email, NivelCargo nivelCargo, String usernameA, String passwordA) {
 
         super(nombre, id, telefono, email);
 
         this.nivelCargo = nivelCargo;
-        this.username = username;
-        this.password = password;
+        this.username = usernameA;
+        this.password = passwordA;
     }
 
     public NivelCargo getNivelCargo() {
