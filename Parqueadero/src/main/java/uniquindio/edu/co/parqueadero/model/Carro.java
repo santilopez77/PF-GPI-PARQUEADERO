@@ -13,8 +13,7 @@ package uniquindio.edu.co.parqueadero.model;
 
         @Override
         public double calcularTarifa() {
-            double valorTarifa = 0;
-            return valorTarifa = valorHora * (getHoraIngreso()-getHoraSalida());
+            return valorHora * (getHoraSalida() - getHoraIngreso());
         }
 
         public int getNumeroPuertas() {
@@ -30,4 +29,3 @@ package uniquindio.edu.co.parqueadero.model;
         public void setValorHora(double valorHora){this.valorHora = valorHora;}
 
     }
-

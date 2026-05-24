@@ -11,6 +11,7 @@ public class Usuario extends Persona {
         this.tipoUsuario = tipoUsuario;
     }
 
+
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
