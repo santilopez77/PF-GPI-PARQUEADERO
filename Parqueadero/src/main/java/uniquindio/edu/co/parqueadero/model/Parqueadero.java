@@ -649,7 +649,7 @@ public class Parqueadero {
 
         double valorTotal = 0;
 
-        valorTotal = obtenerValorIngresoBicicleta() + obtenerValorIngresoCarro() + obtenerValorIngresoMoto();
+        valorTotal += obtenerValorIngresoBicicleta() + obtenerValorIngresoCarro() + obtenerValorIngresoMoto();
 
         return valorTotal;
     }
@@ -805,7 +805,7 @@ public class Parqueadero {
     /**
      * Metodo para crear administrador
      *
-     * @param idAdmin    del administrador
+     * @param idA    del administrador
      * @param nombre     del administrador
      * @param id         del administrador
      * @param telefono   del administrador
@@ -814,11 +814,11 @@ public class Parqueadero {
      * @return mensaje indicando operación
      */
 
-    public String crearAdministrador(int idAdmin, String nombre, int id, String telefono, String email, NivelCargo nivelCargo, String usernameA, String passwordA) {
+    public String crearAdministrador(int idA, String nombre, int id, String telefono, String email, NivelCargo nivelCargo, String usernameA, String passwordA) {
 
         String respuesta = "";
 
-        if (esAdministrador(idAdmin)) {
+        if (esAdministrador(idA)) {
 
             if (buscarEmpleado(id)) {
 
@@ -1117,7 +1117,6 @@ public class Parqueadero {
     /**
      * Metodo para registrar usuarios autorizados
      *
-     * @param idAdmin del administrador
      * @param nombre      del usuario
      * @param id          del usuario
      * @param telefono    del usuario
@@ -1126,10 +1125,10 @@ public class Parqueadero {
      * @return mensaje indicando operación
      */
 
-    public String registrarUsuario(int idAdmin,String nombre, int id, String telefono, String email, TipoUsuario tipoUsuario) {
+    public String registrarUsuario(int idA, String nombre, int id, String telefono, String email, TipoUsuario tipoUsuario) {
 
         String respuesta = "";
-        if (esAdministrador(idAdmin)) {
+        if (esAdministrador(idA)) {
 
             if (buscarEmpleado(id)) {
 

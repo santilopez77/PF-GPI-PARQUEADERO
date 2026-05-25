@@ -3,7 +3,7 @@ package uniquindio.edu.co.parqueadero.Controller;
 import javafx.fxml.FXML;
 import uniquindio.edu.co.parqueadero.model.Parqueadero;
 
-public class BicicletaController {
+public class MotoController {
 
     private Parqueadero parqueadero;
 
@@ -19,7 +19,7 @@ public class BicicletaController {
 
     // Métodos para manejar eventos de la UI, por ejemplo:
     // @FXML
-    // void onRegistrarBicicletaClick() {
-    //     // Lógica para registrar una bicicleta
+    // void onRegistrarMotoClick() {
+    //     // Lógica para registrar una moto
     // }
 }
