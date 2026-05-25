@@ -18,7 +18,7 @@ public class ParqueaderoTest {
 
         admin = new Administrador("Juan", 1, "3120000000", "juan@gmail.com", NivelCargo.ALTO, "admin", "123");
 
-        operario = new Operario("Pedro", 2, "3130000000", "pedro@gmail.com", 8, "operario", "123");
+        operario = new Operario("santiago", 2, "3130000000", "santiago@gmail.com", 8, "operario", "123");
 
         parqueadero.getListEmpleado().add(admin);
         parqueadero.getListEmpleado().add(operario);

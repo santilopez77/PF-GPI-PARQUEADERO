@@ -10,11 +10,13 @@ package uniquindio.edu.co.parqueadero.model;
             this.numeroPuertas = numeroPuertas;
             this.valorHora = valorHora;
         }
-
         @Override
         public double calcularTarifa() {
+            if (getHoraSalida() < getHoraIngreso()) {
+            }
             return valorHora * (getHoraSalida() - getHoraIngreso());
         }
+
 
         public int getNumeroPuertas() {
             return numeroPuertas;

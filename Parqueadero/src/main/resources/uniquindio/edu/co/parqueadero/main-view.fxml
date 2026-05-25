@@ -23,7 +23,6 @@
     <center>
         <StackPane fx:id="container" style="-fx-background-color: white;">
             <Label text="Seleccione una opción del menú para comenzar" textFill="#7f8c8d">
-                <padding><Insets all="20"/></padding>
             </Label>
         </StackPane>
     </center>

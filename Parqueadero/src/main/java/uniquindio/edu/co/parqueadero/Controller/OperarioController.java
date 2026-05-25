@@ -30,7 +30,6 @@ public class OperarioController {
     private TextField txtEspacioIngreso;
 
 
-
     @FXML
     private TextField txtPlacaSalida;
 
@@ -38,10 +37,8 @@ public class OperarioController {
     private TextField txtHoraSalida;
 
 
-
     @FXML
     private TextField txtHorasReporte;
-
 
 
     @FXML
@@ -130,10 +127,6 @@ public class OperarioController {
         txtResultado.setText(respuesta);
     }
 
-    /**
-     * Metodo para mostrar el reporte de la salida de los vehiculos
-     */
-
     @FXML
     private void generarReporte() {
 
@@ -141,12 +134,17 @@ public class OperarioController {
 
         Reporte reporte = parqueadero.generarReporte(horas);
 
-        txtResultado.setText("Total vehiculos: " + reporte.totalVehiculos() + "Ingresos: " + reporte.ingresos() + "Promedio permanencia: "
-                + reporte.promedioPermanencia() + "Vehiculos mayor tiempo: "  + reporte.vehiculosTiempo());
+        txtResultado.setText("Total vehiculos: " + reporte.totalVehiculosIngresados()
+
+                + "Ingresos: " + reporte.ingresosGenerados()
+
+                + "Promedio permanencia: " + reporte.promedioPermanencia()
+
+                + "Vehiculos mayor tiempo: " + reporte.vehiculosMayorTiempo());
     }
 
     /**
-     *Metodo para mostrar el registro del ingresso de los usuarios
+     * Metodo para mostrar el registro del ingresso de los usuarios
      */
 
     @FXML
@@ -156,10 +154,12 @@ public class OperarioController {
 
         for (Registro registro : parqueadero.getListRegistro()) {
 
-            texto += "Ingreso: " + registro.getHoraIngreso() + " Salida: " + registro.getHoraSalida() + " Valor: "
-                    + registro.getValorRegistro() ;
+            texto += "Ingreso: " + registro.getHoraIngreso() + " Salida: " + registro.getHoraSalida() + " Valor: " + registro.getValorRegistro();
         }
 
         txtResultado.setText(texto);
+    }
+
+    public void setParqueadero(Parqueadero parqueadero) {
     }
 }

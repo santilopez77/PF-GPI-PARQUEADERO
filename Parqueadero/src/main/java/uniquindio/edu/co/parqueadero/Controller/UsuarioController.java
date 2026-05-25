@@ -50,13 +50,15 @@ public class UsuarioController {
     void registrarUsuario(ActionEvent event) {
 
         String respuesta = parqueadero.registrarUsuario(
+                1,
                 txtNombre.getText(),
                 Integer.parseInt(txtId.getText()),
                 txtTelefono.getText(),
                 txtEmail.getText(),
-                TipoUsuario.valueOf(txtTipoUsuario.getText().toUpperCase())
+                TipoUsuario.valueOf(
+                        txtTipoUsuario.getText().toUpperCase()
+                )
         );
-
         txtAreaResultado.setText(respuesta);
     }
 

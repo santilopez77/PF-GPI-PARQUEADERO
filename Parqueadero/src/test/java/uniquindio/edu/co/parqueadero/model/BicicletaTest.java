@@ -3,16 +3,17 @@ package uniquindio.edu.co.parqueadero.model;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class BicicletaTest {
 
 
     @Test
-    void calcularTarifa() {
-        Bicicleta bicicleta = new Bicicleta(
-            "GW123", "Juan Perez", 98765, 8.0, 10.0, "GW", 1000.0, "B1"
-        );
+    public void calcularTarifaTest() {
 
-        double tarifaEsperada = 1000.0 * (10.0 - 8.0);
-        assertEquals(tarifaEsperada, bicicleta.calcularTarifa());
+        Bicicleta bicicleta = new Bicicleta("ABC123", "Juan", 1234, 8.0, 16.0, "GW", 1200, "A1");
+
+        double resultado = bicicleta.calcularTarifa();
+        assertEquals(9600, resultado);
     }
-    }
+}
+

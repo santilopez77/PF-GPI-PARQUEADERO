@@ -15,11 +15,25 @@ public class Persona {
     private List<Vehiculo> listVehiculo;
 
     public Persona(String nombre, int id, String telefono, String email) {
-        assert nombre != null && !nombre.trim().isEmpty() : "El nombre no puede estar vacío";
-        assert id > 0 : "El ID debe ser un número positivo";
-        assert telefono != null && telefono.length() == 10 && esNumerico(telefono) : "El teléfono debe tener 10 dígitos numéricos";
-        assert email != null && email.contains("@") : "El formato del correo electrónico no es válido";
+        if(nombre == null || nombre.isBlank()){
 
+            throw new IllegalArgumentException("El nombre no puede estar vacío");
+        }
+
+        if(id <= 0){
+
+            throw new IllegalArgumentException("El ID debe ser un número positivo");
+        }
+
+        if(telefono == null || telefono.length() != 10 || !esNumerico(telefono)){
+
+            throw new IllegalArgumentException("El teléfono debe tener 10 dígitos numéricos");
+        }
+
+        if(email == null || !email.contains("@")){
+
+            throw new IllegalArgumentException("El formato del correo electrónico no es válido");
+        }
         this.nombre = nombre;
         this.id = id;
         this.telefono = telefono;

@@ -251,14 +251,8 @@ public class AdministradorController {
 
     public void mostrarMensaje(String mensaje) {
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    }
 
-        alert.setTitle("Mensaje");
-
-        alert.setHeaderText(null);
-
-        alert.setContentText(mensaje);
-
-        alert.showAndWait();
+    public void setParqueadero(Parqueadero parqueadero) {
     }
 }

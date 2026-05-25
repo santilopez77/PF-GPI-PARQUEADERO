@@ -1,61 +1,81 @@
 package uniquindio.edu.co.parqueadero.model;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonaTest {
-    /**
-     *Test para validar un caso exitoso de creacion de persona
-
-     */
     @Test
-    void crearPersonaValida() {
-        // Caso de éxito
-        Persona persona = new Persona("Juan Perez", 12345, "3001234567", "juan@email.com");
-        assertEquals("Juan Perez", persona.getNombre());
-        assertEquals(12345, persona.getId());
-        assertEquals("3001234567", persona.getTelefono());
-        assertEquals("juan@email.com", persona.getEmail());
-    }
+    public void NombreNuloTest() {
 
-    /**
-     * Test para validar un nombre invalido de persona
-     */
-
-
-    @Test
-    void crearPersonaNombreInvalido() {
-
-        assertThrows(AssertionError.class, () -> {
-            new Persona("", 12345, "3001234567", "juan@email.com");
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Persona(null, 498, "3121234567", "juan@gmail.com");
         });
     }
 
     @Test
-    void crearPersonaIdInvalido() {
-        // El assert debería fallar si el ID es negativo o cero
-        assertThrows(AssertionError.class, () -> {
-            new Persona("Juan Perez", 12345, "3001234567", "juan@email.com");
+    public void NombreVacioTest() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Persona("", 498, "3121234567", "juan@gmail.com");
         });
     }
 
     @Test
-    void crearPersonaTelefonoInvalido() {
-        // El assert debería fallar si el teléfono no tiene 10 dígitos o tiene letras
-        assertThrows(AssertionError.class, () -> {
-            new Persona("Juan Perez", 12345, "123", "juan@email.com");
-        });
-        
-        assertThrows(AssertionError.class, () -> {
-            new Persona("Juan Perez", 12345, "12345678", "juan@email.com");
+    public void IdNegativoTest() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Persona("melissa", -1, "3121234567", "juan@gmail.com");
         });
     }
 
     @Test
-    void crearPersonaEmailInvalido() {
-        // El assert debería fallar si el email no tiene el formato correcto
-        assertThrows(AssertionError.class, () -> {
-            new Persona("Juan Perez", 12345, "3001234567", "email-sin-arroba");
+    public void IdCeroTest() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Persona("melissa", 0, "3121234567", "juan@gmail.com");
         });
+    }
+
+    @Test
+    public void TelefonoNuloTest() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Persona("melissa", 498, null, "juan@gmail.com");
+        });
+    }
+
+    @Test
+    public void TelefonoConMenosDe10DigitosTest() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Persona("melissa", 498, "3121234", "juan@gmail.com");
+        });
+    }
+
+    @Test
+    public void TelefonoConLetrasTest() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Persona("melissa", 498, "31212abc67", "juan@gmail.com");
+        });
+    }
+
+    @Test
+    public void EmailNuloTest() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Persona("melissa", 498, "3121234567", null);
+        });
+    }
+
+    @Test
+    public void EmailSinArrobaTest() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Persona("melissa", 498, "3121234567", "juangmail.com");
+        }
+        );
     }
 }
+
