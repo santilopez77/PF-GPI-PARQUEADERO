@@ -1,7 +1,11 @@
 package uniquindio.edu.co.parqueadero.model;
 
 public enum NivelCargo {
-    BAJO,
+    GERENTE,
+    COORDINADOR,
+    ALTO,
     MEDIO,
-    ALTO
+    BAJO
+
+
 }

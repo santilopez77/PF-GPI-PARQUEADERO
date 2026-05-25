@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="uniquindio.edu.co.parqueadero.controller.AdministradorController">
+
+    <children>
+
+        <Label layoutX="350" layoutY="20" text="PANEL ADMINISTRADOR" />
+
+        <!-- CREAR OPERARIO -->
+
+        <Label layoutX="40" layoutY="80" text="Nombre" />
+        <TextField fx:id="txtNombreOperario"
+                   layoutX="120"
+                   layoutY="75"/>
+
+        <Label layoutX="40" layoutY="120" text="ID" />
+        <TextField fx:id="txtIdOperario"
+                   layoutX="120"
+                   layoutY="115"/>
+
+        <Button layoutX="120"
+                layoutY="160"
+                text="Crear Operario"
+                onAction="#crearOperario"/>
+
+        <!-- CREAR ESPACIO -->
+
+        <Label layoutX="420" layoutY="80" text="Código" />
+        <TextField fx:id="txtCodigoEspacio"
+                   layoutX="520"
+                   layoutY="75"/>
+
+        <Button layoutX="520"
+                layoutY="120"
+                text="Crear Espacio"
+                onAction="#crearEspacio"/>
+
+        <!-- TARIFAS -->
+
+        <Label layoutX="40" layoutY="280" text="Tarifa Carro" />
+        <TextField fx:id="txtTarifaCarro"
+                   layoutX="160"
+                   layoutY="275"/>
+
+        <Button layoutX="320"
+                layoutY="275"
+                text="Guardar"
+                onAction="#guardarTarifaCarro"/>
+
+        <Label layoutX="40" layoutY="330" text="Tarifa Moto" />
+        <TextField fx:id="txtTarifaMoto"
+                   layoutX="160"
+                   layoutY="325"/>
+
+        <Button layoutX="320"
+                layoutY="325"
+                text="Guardar"
+                onAction="#guardarTarifaMoto"/>
+
+        <Label layoutX="40" layoutY="380" text="Tarifa Bicicleta" />
+        <TextField fx:id="txtTarifaBici"
+                   layoutX="160"
+                   layoutY="375"/>
+
+        <Button layoutX="320"
+                layoutY="375"
+                text="Guardar"
+                onAction="#guardarTarifaBici"/>
+
+        <!-- ESTADO -->
+
+        <TextArea fx:id="txtAreaAdmin"
+                  layoutX="40"
+                  layoutY="500"
+                  prefHeight="120"
+                  prefWidth="700"/>
+
+    </children>
+</AnchorPane>

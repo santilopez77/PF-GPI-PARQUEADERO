@@ -1,15 +1,28 @@
 package uniquindio.edu.co.parqueadero;
 
-public class MotoTest {
-    @org.junit.jupiter.api.Test
-    void testCalcularTarifaMoto() {
-        uniquindio.edu.co.parqueadero.model.Moto moto = new uniquindio.edu.co.parqueadero.model.Moto(
-            "XYZ-789", "Carlos Perez", 12345, 10.0, 12.0, 250, 1500.0, "M1"
-        );
+import org.junit.jupiter.api.Test;
+import uniquindio.edu.co.parqueadero.model.Moto;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-        // El cálculo en la clase Moto es valorHora * (getHoraSalida() - getHoraIngreso())
-        double tarifaEsperada = 1500.0 * (12.0 - 10.0);
-        org.junit.jupiter.api.Assertions.assertEquals(tarifaEsperada, moto.calcularTarifa());
-    }
+public class MotoTest{
 
+@Test
+public void calcularTarifaTest() {
+
+    Moto moto = new Moto(
+            "ABC123",
+            "Juan",
+            1234,
+            8.0,
+            11.0,
+            150,
+            2000,
+            "A1"
+    );
+
+    double resultado = moto.calcularTarifa();
+    assertEquals(6000,resultado);
 }
+
+
+    }

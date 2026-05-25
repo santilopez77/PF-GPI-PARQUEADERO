@@ -1,19 +1,21 @@
 package uniquindio.edu.co.parqueadero.model;
 
-public class Moto extends Vehiculo{
+public class Moto extends Vehiculo {
 
     private int cilindraje;
     private double valorHora;
 
-    public Moto (String placa, String nombreConductor, int idConductor, double horaIngreso,double horaSalida, int cilindraje, double valorHora,String espacioAsignado){
-        super(placa, nombreConductor, idConductor, horaIngreso,valorHora, espacioAsignado);
+    public Moto(String placa, String nombreConductor, int idConductor, double horaIngreso, double horaSalida, int cilindraje, double valorHora, String espacioAsignado) {
+        super(placa, nombreConductor, idConductor, horaIngreso, horaSalida, espacioAsignado); // Corregido: pasar horaSalida correctamente
         this.cilindraje = cilindraje;
         this.valorHora = valorHora;
     }
+
     @Override
     public double calcularTarifa() {
-        double valorTarifa = 0;
-        return valorTarifa = valorHora * (getHoraIngreso()-getHoraSalida());
+        if (getHoraSalida() < getHoraIngreso()) {
+        }
+        return valorHora * (getHoraSalida() - getHoraIngreso());
     }
 
     public int getCilindraje() {
@@ -24,6 +26,11 @@ public class Moto extends Vehiculo{
         this.cilindraje = cilindraje;
     }
 
-    public double getValorHora(){return valorHora;}
-    public void setValorHora(double valorHora){this.valorHora = valorHora;}
+    public double getValorHora() {
+        return valorHora;
+    }
+
+    public void setValorHora(double valorHora) {
+        this.valorHora = valorHora;
+    }
 }

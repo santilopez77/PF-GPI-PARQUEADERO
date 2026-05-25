@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="750.0" prefWidth="950.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="uniquindio.edu.co.parqueadero.controller.OperarioController">
+
+    <children>
+
+        <Label layoutX="370" layoutY="20" text="PANEL OPERARIO" />
+
+        <!-- INGRESO VEHICULO -->
+
+        <Label layoutX="40" layoutY="80" text="Placa" />
+        <TextField fx:id="txtPlaca"
+                   layoutX="120"
+                   layoutY="75"/>
+
+        <Label layoutX="40" layoutY="120" text="Conductor" />
+        <TextField fx:id="txtConductor"
+                   layoutX="120"
+                   layoutY="115"/>
+
+        <Label layoutX="40" layoutY="160" text="Hora ingreso" />
+        <TextField fx:id="txtHoraIngreso"
+                   layoutX="120"
+                   layoutY="155"/>
+
+        <Button layoutX="120"
+                layoutY="210"
+                text="Ingresar Carro"
+                onAction="#ingresarCarro"/>
+
+        <Button layoutX="260"
+                layoutY="210"
+                text="Ingresar Moto"
+                onAction="#ingresarMoto"/>
+
+        <Button layoutX="390"
+                layoutY="210"
+                text="Ingresar Bicicleta"
+                onAction="#ingresarBicicleta"/>
+
+        <!-- SALIDA -->
+
+        <Label layoutX="40" layoutY="320" text="Hora salida" />
+        <TextField fx:id="txtHoraSalida"
+                   layoutX="120"
+                   layoutY="315"/>
+
+        <Button layoutX="120"
+                layoutY="360"
+                text="Registrar Salida"
+                onAction="#registrarSalida"/>
+
+        <!-- CONSULTAS -->
+
+        <Button layoutX="600"
+                layoutY="90"
+                text="Espacios Disponibles"
+                onAction="#consultarEspacios"/>
+
+        <Button layoutX="600"
+                layoutY="140"
+                text="Vehiculos Dentro"
+                onAction="#consultarVehiculos"/>
+
+        <Button layoutX="600"
+                layoutY="190"
+                text="Espacios Ocupados"
+                onAction="#consultarOcupados"/>
+
+        <!-- REPORTE -->
+
+        <Label layoutX="600" layoutY="300" text="Horas límite" />
+        <TextField fx:id="txtHoras"
+                   layoutX="690"
+                   layoutY="295"/>
+
+        <Button layoutX="690"
+                layoutY="340"
+                text="Generar Reporte"
+                onAction="#generarReporte"/>
+
+        <!-- AREA -->
+
+        <TextArea fx:id="txtAreaOperario"
+                  layoutX="40"
+                  layoutY="500"
+                  prefHeight="170"
+                  prefWidth="820"/>
+
+    </children>
+</AnchorPane>

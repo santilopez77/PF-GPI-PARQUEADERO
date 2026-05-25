@@ -65,12 +65,12 @@ public class Vehiculo implements TarifaEspacio {
         return horaIngreso;
     }
 
-    public void setHoraIngreso(double horaSalida) {
-        this.horaSalida = horaSalida;
+    public void setHoraIngreso(double horaIngreso) { // Corregido: ahora asigna a horaIngreso
+        this.horaIngreso = horaIngreso;
     }
 
     public double getHoraSalida() {
-        return horaIngreso;
+        return horaSalida; // Corregido: ahora retorna horaSalida
     }
 
     public void setHoraSalida(double horaSalida) {
