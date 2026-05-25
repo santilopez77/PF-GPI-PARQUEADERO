@@ -1,71 +1,165 @@
 package uniquindio.edu.co.parqueadero.Controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import uniquindio.edu.co.parqueadero.model.Parqueadero;
+import uniquindio.edu.co.parqueadero.model.*;
 
 public class OperarioController {
 
-    @FXML
-    private TextField txtPlaca;
+    private Parqueadero parqueadero;
+
 
     @FXML
-    private TextField txtConductor;
+    private TextField txtPlacaIngreso;
+
+    @FXML
+    private TextField txtConductorIngreso;
+
+    @FXML
+    private TextField txtIdIngreso;
+
+    @FXML
+    private ComboBox<String> cbTipoVehiculo;
 
     @FXML
     private TextField txtHoraIngreso;
 
     @FXML
+    private TextField txtEspacioIngreso;
+
+
+
+    @FXML
+    private TextField txtPlacaSalida;
+
+    @FXML
     private TextField txtHoraSalida;
 
-    @FXML
-    private TextField txtHoras;
+
 
     @FXML
-    private TextArea txtAreaOperario;
+    private TextField txtHorasReporte;
 
-    public void ingresarCarro(ActionEvent event){
 
-        txtAreaOperario.setText("Carro ingresado: " + txtPlaca.getText());
+
+    @FXML
+    private TextArea txtResultado;
+
+    @FXML
+    public void initialize() {
+
+        parqueadero = new Parqueadero("Parqueadero UQ", "12345", 20);
+
+        cbTipoVehiculo.getItems().addAll("Carro", "Moto", "Bicicleta");
     }
 
-    public void ingresarMoto(ActionEvent event){
+    /**
+     * Metodo para registrar el ingreso de los vehiculos
+     */
+    @FXML
+    private void registrarIngresoVehiculo() {
 
-        txtAreaOperario.setText("Moto ingresada: " + txtPlaca.getText());
+        String placa = txtPlacaIngreso.getText();
+        String conductor = txtConductorIngreso.getText();
+
+        int identificacion = Integer.parseInt(txtIdIngreso.getText());
+
+        double horaIngreso = Double.parseDouble(txtHoraIngreso.getText());
+
+        String espacio = txtEspacioIngreso.getText();
+
+        String tipo = cbTipoVehiculo.getValue();
+
+        String respuesta = "";
+
+        if (tipo.equals("Carro")) {
+
+            respuesta = parqueadero.registrarIngresoCarro(2, placa, conductor, identificacion, horaIngreso, 0, 4, 2000, espacio);
+        }
+
+        if (tipo.equals("Moto")) {
+
+            respuesta = parqueadero.registrarIngresoMoto(2, placa, conductor, identificacion, horaIngreso, 0, 150, 1500, espacio);
+        }
+
+        if (tipo.equals("Bicicleta")) {
+
+            respuesta = parqueadero.registrarIngresoBicicleta(2, placa, conductor, identificacion, horaIngreso, 0, "GW", 1000, espacio);
+        }
+
+        txtResultado.setText(respuesta);
     }
 
-    public void ingresarBicicleta(ActionEvent event){
+    /**
+     * Metodo para registrar la salida de los vehiculos
+     */
 
-        txtAreaOperario.setText("Bicicleta ingresada: " + txtPlaca.getText());
+    @FXML
+    private void registrarSalidaVehiculo() {
+
+        String placa = txtPlacaSalida.getText();
+
+        double horaSalida = Double.parseDouble(txtHoraSalida.getText());
+
+        String respuesta = parqueadero.registrarSalidaVehiculo(2, placa, horaSalida);
+
+        txtResultado.setText(respuesta);
     }
 
-    public void registrarSalida(ActionEvent event){
+    /**
+     * Metodo para consultar los vehiculos
+     */
+    @FXML
+    private void consultarVehiculos() {
 
-        txtAreaOperario.setText("Salida registrada para: " + txtPlaca.getText());
+        String respuesta = parqueadero.consultarTotalVehiculosDentro(2);
+
+        txtResultado.setText(respuesta);
     }
 
-    public void consultarEspacios(ActionEvent event){
+    /**
+     * Metodo para consultar los espacios
+     */
+    @FXML
+    private void consultarEspacios() {
 
-        txtAreaOperario.setText("Consultando espacios disponibles...");
+        String respuesta = parqueadero.consultarEspaciosDisponibles(2);
+
+        txtResultado.setText(respuesta);
     }
 
-    public void consultarVehiculos(ActionEvent event){
+    /**
+     * Metodo para mostrar el reporte de la salida de los vehiculos
+     */
 
-        txtAreaOperario.setText("Consultando vehículos dentro...");
+    @FXML
+    private void generarReporte() {
+
+        double horas = Double.parseDouble(txtHorasReporte.getText());
+
+        Reporte reporte = parqueadero.generarReporte(horas);
+
+        txtResultado.setText("Total vehiculos: " + reporte.totalVehiculos() + "Ingresos: " + reporte.ingresos() + "Promedio permanencia: "
+                + reporte.promedioPermanencia() + "Vehiculos mayor tiempo: "  + reporte.vehiculosTiempo());
     }
 
-    public void consultarOcupados(ActionEvent event){
+    /**
+     *Metodo para mostrar el registro del ingresso de los usuarios
+     */
 
-        txtAreaOperario.setText("Consultando espacios ocupados...");
-    }
+    @FXML
+    private void mostrarRegistros() {
 
-    public void generarReporte(ActionEvent event){
+        String texto = "";
 
-        txtAreaOperario.setText("Reporte generado con límite: " + txtHoras.getText());
-    }
+        for (Registro registro : parqueadero.getListRegistro()) {
 
-    public void setParqueadero(Parqueadero parqueadero) {
+            texto += "Ingreso: " + registro.getHoraIngreso() + " Salida: " + registro.getHoraSalida() + " Valor: "
+                    + registro.getValorRegistro() ;
+        }
+
+        txtResultado.setText(texto);
     }
 }

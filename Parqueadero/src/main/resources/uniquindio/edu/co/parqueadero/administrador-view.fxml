@@ -3,83 +3,98 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="uniquindio.edu.co.parqueadero.controller.AdministradorController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.edu.co.parqueadero.controller.AdministradorController">
 
     <children>
 
-        <Label layoutX="350" layoutY="20" text="PANEL ADMINISTRADOR" />
+        <Label layoutX="320.0" layoutY="14.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="ADMINISTRADOR" />
 
-        <!-- CREAR OPERARIO -->
+        <!-- GESTION ESPACIOS -->
 
-        <Label layoutX="40" layoutY="80" text="Nombre" />
-        <TextField fx:id="txtNombreOperario"
-                   layoutX="120"
-                   layoutY="75"/>
+        <VBox layoutX="25.0" layoutY="70.0" prefWidth="250.0" spacing="10">
 
-        <Label layoutX="40" layoutY="120" text="ID" />
-        <TextField fx:id="txtIdOperario"
-                   layoutX="120"
-                   layoutY="115"/>
+            <Label style="-fx-font-size:18px;" text="GESTION ESPACIOS" />
 
-        <Button layoutX="120"
-                layoutY="160"
-                text="Crear Operario"
-                onAction="#crearOperario"/>
+            <TextField fx:id="txtCodigoEspacio" promptText="Codigo espacio" />
 
-        <!-- CREAR ESPACIO -->
+            <ComboBox fx:id="cbTipoEspacio" promptText="Tipo espacio" />
 
-        <Label layoutX="420" layoutY="80" text="Código" />
-        <TextField fx:id="txtCodigoEspacio"
-                   layoutX="520"
-                   layoutY="75"/>
+            <ComboBox fx:id="cbEstadoEspacio" promptText="Estado espacio" />
 
-        <Button layoutX="520"
-                layoutY="120"
-                text="Crear Espacio"
-                onAction="#crearEspacio"/>
+            <Button onAction="#crearEspacio" text="Crear Espacio" />
+
+            <Button onAction="#modificarEstadoEspacio" text="Modificar Estado" />
+
+            <Button onAction="#deshabilitarEspacio" text="Deshabilitar Espacio" />
+
+            <Button onAction="#habilitarEspacio" text="Habilitar Espacio" />
+
+        </VBox>
 
         <!-- TARIFAS -->
 
-        <Label layoutX="40" layoutY="280" text="Tarifa Carro" />
-        <TextField fx:id="txtTarifaCarro"
-                   layoutX="160"
-                   layoutY="275"/>
+        <VBox layoutX="325.0" layoutY="70.0" prefWidth="250.0" spacing="10">
 
-        <Button layoutX="320"
-                layoutY="275"
-                text="Guardar"
-                onAction="#guardarTarifaCarro"/>
+            <Label style="-fx-font-size:18px;" text="GESTION TARIFAS" />
 
-        <Label layoutX="40" layoutY="330" text="Tarifa Moto" />
-        <TextField fx:id="txtTarifaMoto"
-                   layoutX="160"
-                   layoutY="325"/>
+            <TextField fx:id="txtTarifaCarro" promptText="Tarifa carro" />
 
-        <Button layoutX="320"
-                layoutY="325"
-                text="Guardar"
-                onAction="#guardarTarifaMoto"/>
+            <Button onAction="#asignarTarifaCarro" text="Guardar Tarifa Carro" />
 
-        <Label layoutX="40" layoutY="380" text="Tarifa Bicicleta" />
-        <TextField fx:id="txtTarifaBici"
-                   layoutX="160"
-                   layoutY="375"/>
+            <TextField fx:id="txtTarifaMoto" promptText="Tarifa moto" />
 
-        <Button layoutX="320"
-                layoutY="375"
-                text="Guardar"
-                onAction="#guardarTarifaBici"/>
+            <Button onAction="#asignarTarifaMoto" text="Guardar Tarifa Moto" />
 
-        <!-- ESTADO -->
+            <TextField fx:id="txtTarifaBici" promptText="Tarifa bicicleta" />
 
-        <TextArea fx:id="txtAreaAdmin"
-                  layoutX="40"
-                  layoutY="500"
-                  prefHeight="120"
-                  prefWidth="700"/>
+            <Button onAction="#asignarTarifaBici" text="Guardar Tarifa Bicicleta" />
+
+        </VBox>
+
+        <!-- USUARIOS -->
+
+        <VBox layoutX="625.0" layoutY="70.0" prefWidth="240.0" spacing="10">
+
+            <Label style="-fx-font-size:18px;" text="USUARIOS AUTORIZADOS" />
+
+            <TextField fx:id="txtNombreUsuario" promptText="Nombre" />
+
+            <TextField fx:id="txtIdUsuario" promptText="ID" />
+
+            <TextField fx:id="txtTelefonoUsuario" promptText="Telefono" />
+
+            <TextField fx:id="txtEmailUsuario" promptText="Email" />
+
+            <ComboBox fx:id="cbTipoUsuario" promptText="Tipo usuario" />
+
+            <Button onAction="#registrarUsuario" text="Registrar Usuario" />
+
+        </VBox>
+
+        <!-- OPERARIOS -->
+
+        <VBox layoutX="280.0" layoutY="420.0" prefWidth="320.0" spacing="10">
+
+            <Label style="-fx-font-size:18px;" text="CREAR OPERARIO" />
+
+            <TextField fx:id="txtNombreOperario" promptText="Nombre operario" />
+
+            <TextField fx:id="txtIdOperario" promptText="ID operario" />
+
+            <TextField fx:id="txtTelefonoOperario" promptText="Telefono" />
+
+            <TextField fx:id="txtEmailOperario" promptText="Email" />
+
+            <TextField fx:id="txtHorasOperario" promptText="Horas trabajadas" />
+
+            <TextField fx:id="txtUsernameOperario" promptText="Username" />
+
+            <PasswordField fx:id="txtPasswordOperario" promptText="Password" />
+
+            <Button onAction="#crearOperario" text="Crear Operario" />
+
+        </VBox>
 
     </children>
+
 </AnchorPane>
