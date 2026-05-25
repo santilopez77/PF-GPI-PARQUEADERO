@@ -154,7 +154,7 @@ public class OperarioController {
 
         for (Registro registro : parqueadero.getListRegistro()) {
 
-            texto += "Ingreso: " + registro.getHoraIngreso() + " Salida: " + registro.getHoraSalida() + " Valor: " + registro.getValorRegistro();
+            texto += "Ingreso: " + registro.horaIngreso() + " Salida: " + registro.horaSalida() + " Valor: " + registro.valorRegistro();
         }
 
         txtResultado.setText(texto);
