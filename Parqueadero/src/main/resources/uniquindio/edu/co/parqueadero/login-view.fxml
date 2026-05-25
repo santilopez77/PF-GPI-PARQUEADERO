@@ -3,23 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.edu.co.parqueadero.controller.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="uniquindio.edu.co.parqueadero.controller.LoginController">
 
     <children>
 
-        <Label layoutX="246.0" layoutY="40" prefHeight="18.0" prefWidth="200.0" text="PARQUEADERO" />
+        <Label layoutX="225.0" layoutY="51.0" prefHeight="18.0" prefWidth="200.0"
+               style="-fx-font-weight: bold; -fx-font-size: 16;" text="PARQUEADERO" />
 
         <Label layoutX="101.0" layoutY="120" prefHeight="18.0" prefWidth="55.0" text="Usuario:" />
-        <TextField fx:id="txtUsuario" layoutX="184.0" layoutY="115" prefHeight="26.0" prefWidth="236.0" />
+        <TextField fx:id="txtUsuario" layoutX="184.0" layoutY="115" prefHeight="26.0" prefWidth="236.0" promptText="Username" />
 
         <Label layoutX="97.0" layoutY="170" prefHeight="18.0" prefWidth="84.0" text="Contraseña:" />
-        <PasswordField fx:id="txtPassword" layoutX="184.0" layoutY="165" prefHeight="26.0" prefWidth="236.0" />
+        <PasswordField fx:id="txtPassword" layoutX="184.0" layoutY="165" prefHeight="26.0" prefWidth="236.0" promptText="Password" />
 
-        <Button layoutX="152.0" layoutY="250" onAction="#abrirAdministrador" prefHeight="26.0" prefWidth="120.0" text="Administrador" />
-
-        <Button layoutX="320" layoutY="250" onAction="#abrirOperario" prefHeight="26.0" prefWidth="120.0" text="Operario" />
-
-        <Button layoutX="185.0" layoutY="310" onAction="#abrirInvitado" prefHeight="26.0" prefWidth="250.0" text="Entrar como visitante " />
+        <Button layoutX="175.0" layoutY="237.0" onAction="#abrirInvitado" prefHeight="26.0" prefWidth="250.0"
+                style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold;"
+                text="Iniciar Sesión" />
 
     </children>
 </AnchorPane>

@@ -2,83 +2,43 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane prefHeight="678.0" prefWidth="803.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.edu.co.parqueadero.controller.OperarioController">
+<VBox spacing="20" prefWidth="800" prefHeight="600" xmlns="http://javafx.com/javafx/17.0.12" 
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.edu.co.parqueadero.controller.OperarioController">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
 
-    <children>
+    <Label text="INTERFAZ DE OPERARIO" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
 
-        <Label layoutX="340.0" layoutY="20.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="OPERARIO" />
+    <HBox spacing="30">
+        <!-- SECCION INGRESO -->
+        <VBox spacing="10" prefWidth="350" style="-fx-border-color: lightgray; -fx-padding: 10;">
+            <Label text="REGISTRAR INGRESO" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="cbTipoVehiculo" promptText="Tipo de Vehiculo" />
+            <TextField fx:id="txtPlacaIngreso" promptText="Placa" />
+            <TextField fx:id="txtNombreConductor" promptText="Nombre Conductor" />
+            <TextField fx:id="txtIdConductor" promptText="ID Conductor" />
+            <TextField fx:id="txtHoraIngreso" promptText="Hora Ingreso (militar)" />
+            <TextField fx:id="txtMarcaBici" promptText="Atributo distinguido" />
+            <TextField fx:id="txtEspacio" promptText="Espacio Asignado" />
+            <Button text="Registrar Entrada" onAction="#registrarIngreso" maxWidth="Infinity" style="-fx-background-color: #28a745; -fx-text-fill: white;"/>
+        </VBox>
 
-        <!-- REGISTRAR INGRESO -->
+        <!-- SECCION SALIDA Y LISTA -->
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+            <VBox spacing="10" style="-fx-border-color: lightgray; -fx-padding: 10;">
+                <Label text="REGISTRAR SALIDA" style="-fx-font-weight: bold;"/>
+                <HBox spacing="10">
+                    <TextField fx:id="txtPlacaSalida" promptText="Placa vehiculo" HBox.hgrow="ALWAYS"/>
+                    <Button text="Registrar Salida" onAction="#registrarSalida" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
+                </HBox>
+            </VBox>
+            
+            <Label text="VEHÍCULOS ACTUALMENTE DENTRO:" style="-fx-font-weight: bold;"/>
+            <TextArea fx:id="txtAreaVehiculos" VBox.vgrow="ALWAYS" editable="false" />
+            <Button text="Refrescar Lista" onAction="#actualizarLista" maxWidth="Infinity"/>
+        </VBox>
+    </HBox>
 
-        <Label layoutX="40.0" layoutY="70.0" style="-fx-font-weight: bold;" text="Registrar ingreso vehiculo" />
-
-        <TextField fx:id="txtPlacaIngreso" layoutX="40.0" layoutY="100.0" promptText="Placa" />
-
-        <TextField fx:id="txtConductorIngreso" layoutX="40.0" layoutY="199.0" promptText="Conductor" />
-
-        <TextField fx:id="txtIdIngreso" layoutX="40.0" layoutY="240.0" promptText="Identificacion" />
-
-        <ComboBox fx:id="cbTipoVehiculo" layoutX="220.0" layoutY="150.0" prefWidth="140.0" promptText="Tipo" />
-
-        <TextField fx:id="txtHoraIngreso" layoutX="215.0" layoutY="100.0" promptText="Hora ingreso" />
-
-        <TextField fx:id="txtEspacioIngreso" layoutX="40.0" layoutY="150.0" promptText="Espacio asignado" />
-
-        <Button layoutX="225.0" layoutY="199.0" mnemonicParsing="false" onAction="#registrarIngresoVehiculo" text="Registrar ingreso" />
-
-        <!-- REGISTRAR SALIDA -->
-
-        <Label layoutX="497.0" layoutY="92.0" style="-fx-font-weight: bold;" text="Registrar salida vehiculo" />
-
-        <TextField fx:id="txtPlacaSalida" layoutX="497.0" layoutY="170.0" promptText="Placa" />
-
-        <TextField fx:id="txtHoraSalida" layoutX="497.0" layoutY="130.0" promptText="Hora salida" />
-
-        <Button layoutX="497.0" layoutY="208.0" mnemonicParsing="false" onAction="#registrarSalidaVehiculo" text="Registrar salida" />
-
-        <!-- CONSULTAS -->
-
-        <Label layoutX="373.0" layoutY="294.0" style="-fx-font-weight: bold;" text="Consultas" />
-
-        <Button layoutX="230.0" layoutY="337.0" mnemonicParsing="false" onAction="#consultarVehiculos" text="Consultar vehiculos" />
-
-        <Button layoutX="460.0" layoutY="337.0" mnemonicParsing="false" onAction="#consultarEspacios" text="Consultar espacios" />
-
-        <!-- REPORTES -->
-
-        <Label layoutX="40.0"
-               layoutY="470.0"
-               text="Reportes"/>
-
-        <TextField fx:id="txtHorasReporte"
-                   layoutX="40.0"
-                   layoutY="500.0"
-                   promptText="Horas limite"/>
-
-        <Button layoutX="220.0"
-                layoutY="500.0"
-                mnemonicParsing="false"
-                onAction="#generarReporte"
-                text="Generar reporte"/>
-
-        <Button layoutX="420.0"
-                layoutY="500.0"
-                mnemonicParsing="false"
-                onAction="#mostrarRegistros"
-                text="Mostrar registros"/>
-
-        <!-- RESULTADO -->
-
-        <TextArea fx:id="txtResultado"
-                  layoutX="40.0"
-                  layoutY="560.0"
-                  prefHeight="110.0"
-                  prefWidth="760.0"/>
-        <!-- RESULTADO -->
-
-        <TextArea fx:id="txtResultado" layoutX="40.0" layoutY="560.0" prefHeight="110.0" prefWidth="760.0" />
-
-    </children>
-
-</AnchorPane>
+    <Button text="Cerrar Sesión" onAction="#cerrarSesion" style="-fx-background-color: #6c757d; -fx-text-fill: white;"/>
+</VBox>

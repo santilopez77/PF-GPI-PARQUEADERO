@@ -1,4 +1,4 @@
-package uniquindio.edu.co.parqueadero.Controller;
+package uniquindio.edu.co.parqueadero.controller;
 
 import uniquindio.edu.co.parqueadero.model.Parqueadero;
 

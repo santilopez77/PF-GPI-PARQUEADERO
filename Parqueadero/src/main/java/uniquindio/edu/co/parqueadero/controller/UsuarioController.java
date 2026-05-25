@@ -1,4 +1,4 @@
-package uniquindio.edu.co.parqueadero.Controller;
+package uniquindio.edu.co.parqueadero.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
