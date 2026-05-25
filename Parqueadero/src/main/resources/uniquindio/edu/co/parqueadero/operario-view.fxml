@@ -3,95 +3,82 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="750.0" prefWidth="950.0"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="uniquindio.edu.co.parqueadero.controller.OperarioController">
+<AnchorPane prefHeight="678.0" prefWidth="803.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uniquindio.edu.co.parqueadero.controller.OperarioController">
 
     <children>
 
-        <Label layoutX="370" layoutY="20" text="PANEL OPERARIO" />
+        <Label layoutX="340.0" layoutY="20.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="OPERARIO" />
 
-        <!-- INGRESO VEHICULO -->
+        <!-- REGISTRAR INGRESO -->
 
-        <Label layoutX="40" layoutY="80" text="Placa" />
-        <TextField fx:id="txtPlaca"
-                   layoutX="120"
-                   layoutY="75"/>
+        <Label layoutX="40.0" layoutY="70.0" style="-fx-font-weight: bold;" text="Registrar ingreso vehiculo" />
 
-        <Label layoutX="40" layoutY="120" text="Conductor" />
-        <TextField fx:id="txtConductor"
-                   layoutX="120"
-                   layoutY="115"/>
+        <TextField fx:id="txtPlacaIngreso" layoutX="40.0" layoutY="100.0" promptText="Placa" />
 
-        <Label layoutX="40" layoutY="160" text="Hora ingreso" />
-        <TextField fx:id="txtHoraIngreso"
-                   layoutX="120"
-                   layoutY="155"/>
+        <TextField fx:id="txtConductorIngreso" layoutX="40.0" layoutY="199.0" promptText="Conductor" />
 
-        <Button layoutX="120"
-                layoutY="210"
-                text="Ingresar Carro"
-                onAction="#ingresarCarro"/>
+        <TextField fx:id="txtIdIngreso" layoutX="40.0" layoutY="240.0" promptText="Identificacion" />
 
-        <Button layoutX="260"
-                layoutY="210"
-                text="Ingresar Moto"
-                onAction="#ingresarMoto"/>
+        <ComboBox fx:id="cbTipoVehiculo" layoutX="220.0" layoutY="150.0" prefWidth="140.0" promptText="Tipo" />
 
-        <Button layoutX="390"
-                layoutY="210"
-                text="Ingresar Bicicleta"
-                onAction="#ingresarBicicleta"/>
+        <TextField fx:id="txtHoraIngreso" layoutX="215.0" layoutY="100.0" promptText="Hora ingreso" />
 
-        <!-- SALIDA -->
+        <TextField fx:id="txtEspacioIngreso" layoutX="40.0" layoutY="150.0" promptText="Espacio asignado" />
 
-        <Label layoutX="40" layoutY="320" text="Hora salida" />
-        <TextField fx:id="txtHoraSalida"
-                   layoutX="120"
-                   layoutY="315"/>
+        <Button layoutX="225.0" layoutY="199.0" mnemonicParsing="false" onAction="#registrarIngresoVehiculo" text="Registrar ingreso" />
 
-        <Button layoutX="120"
-                layoutY="360"
-                text="Registrar Salida"
-                onAction="#registrarSalida"/>
+        <!-- REGISTRAR SALIDA -->
+
+        <Label layoutX="497.0" layoutY="92.0" style="-fx-font-weight: bold;" text="Registrar salida vehiculo" />
+
+        <TextField fx:id="txtPlacaSalida" layoutX="497.0" layoutY="170.0" promptText="Placa" />
+
+        <TextField fx:id="txtHoraSalida" layoutX="497.0" layoutY="130.0" promptText="Hora salida" />
+
+        <Button layoutX="497.0" layoutY="208.0" mnemonicParsing="false" onAction="#registrarSalidaVehiculo" text="Registrar salida" />
 
         <!-- CONSULTAS -->
 
-        <Button layoutX="600"
-                layoutY="90"
-                text="Espacios Disponibles"
-                onAction="#consultarEspacios"/>
+        <Label layoutX="373.0" layoutY="294.0" style="-fx-font-weight: bold;" text="Consultas" />
 
-        <Button layoutX="600"
-                layoutY="140"
-                text="Vehiculos Dentro"
-                onAction="#consultarVehiculos"/>
+        <Button layoutX="230.0" layoutY="337.0" mnemonicParsing="false" onAction="#consultarVehiculos" text="Consultar vehiculos" />
 
-        <Button layoutX="600"
-                layoutY="190"
-                text="Espacios Ocupados"
-                onAction="#consultarOcupados"/>
+        <Button layoutX="460.0" layoutY="337.0" mnemonicParsing="false" onAction="#consultarEspacios" text="Consultar espacios" />
 
-        <!-- REPORTE -->
+        <!-- REPORTES -->
 
-        <Label layoutX="600" layoutY="300" text="Horas límite" />
-        <TextField fx:id="txtHoras"
-                   layoutX="690"
-                   layoutY="295"/>
+        <Label layoutX="40.0"
+               layoutY="470.0"
+               text="Reportes"/>
 
-        <Button layoutX="690"
-                layoutY="340"
-                text="Generar Reporte"
-                onAction="#generarReporte"/>
+        <TextField fx:id="txtHorasReporte"
+                   layoutX="40.0"
+                   layoutY="500.0"
+                   promptText="Horas limite"/>
 
-        <!-- AREA -->
+        <Button layoutX="220.0"
+                layoutY="500.0"
+                mnemonicParsing="false"
+                onAction="#generarReporte"
+                text="Generar reporte"/>
 
-        <TextArea fx:id="txtAreaOperario"
-                  layoutX="40"
-                  layoutY="500"
-                  prefHeight="170"
-                  prefWidth="820"/>
+        <Button layoutX="420.0"
+                layoutY="500.0"
+                mnemonicParsing="false"
+                onAction="#mostrarRegistros"
+                text="Mostrar registros"/>
+
+        <!-- RESULTADO -->
+
+        <TextArea fx:id="txtResultado"
+                  layoutX="40.0"
+                  layoutY="560.0"
+                  prefHeight="110.0"
+                  prefWidth="760.0"/>
+        <!-- RESULTADO -->
+
+        <TextArea fx:id="txtResultado" layoutX="40.0" layoutY="560.0" prefHeight="110.0" prefWidth="760.0" />
 
     </children>
+
 </AnchorPane>
