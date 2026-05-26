@@ -12,10 +12,11 @@ package uniquindio.edu.co.parqueadero.model;
         }
         @Override
         public double calcularTarifa() {
-            double valorTarifa = 0;
-            return valorTarifa = valorHora * (getHoraIngreso()-getHoraSalida());
+            if (getHoraSalida() < getHoraIngreso()) {
+                throw new IllegalArgumentException("La hora de salida no puede ser menor a la de ingreso");
+            }
+            return valorHora * (getHoraSalida() - getHoraIngreso());
         }
-
 
         public String getMarca (){return marca;}
         public void setMarca (String marca){this.marca  = marca;}
@@ -23,4 +24,3 @@ package uniquindio.edu.co.parqueadero.model;
         public double getValorHora() {return valorHora;}
         public void setValorHora(double valorHora){this.valorHora = valorHora;}
     }
-

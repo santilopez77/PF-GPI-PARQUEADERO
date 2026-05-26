@@ -13,6 +13,17 @@ public class Espacio {
     private Vehiculo theVehiculo;
 
     public Espacio(int codigo, String vehiculoAsignado) {
+
+        if (codigo <= 0) {
+
+            throw new IllegalArgumentException("El codigo debe ser positivo");
+        }
+
+        if (vehiculoAsignado == null || vehiculoAsignado.trim().isEmpty()) {
+
+            throw new IllegalArgumentException("El vehiculo asignado no puede estar vacio");
+        }
+
         this.codigo = codigo;
         this.vehiculoAsignado = vehiculoAsignado;
     }
@@ -22,6 +33,12 @@ public class Espacio {
     }
 
     public void setCodigo(int codigo) {
+
+        if (codigo <= 0) {
+
+            throw new IllegalArgumentException("El codigo debe ser positivo");
+        }
+
         this.codigo = codigo;
     }
 
@@ -30,9 +47,14 @@ public class Espacio {
     }
 
     public void setVehiculoAsignado(String vehiculoAsignado) {
+
+        if (vehiculoAsignado == null || vehiculoAsignado.trim().isEmpty()) {
+
+            throw new IllegalArgumentException("El vehiculo asignado no puede estar vacio");
+        }
+
         this.vehiculoAsignado = vehiculoAsignado;
     }
-
 
     public TipoEspacio getTipoEspacio() {
         return tipoEspacio;
@@ -63,4 +85,3 @@ public class Espacio {
         return "Espacio{codigo=" + codigo + "}";
     }
 }
-
